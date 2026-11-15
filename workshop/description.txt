@@ -1,0 +1,15 @@
+[h1]Mod Menu[/h1]
+One in-game menu for every mod's settings and hotkeys. Press [b]F11[/b] in the main menu or in game.
+
+[list]
+[*][b]Every mod in one list[/b]: each mod with a BepInEx config shows up on the left, its settings on the right.
+[*][b]Change settings in place[/b]: On/Off switches, - / + for numbers (Shift for big steps, or click the number and type), choices, text. [b]Default[/b] resets a setting.
+[*][b]All keys[/b]: every mod's hotkeys on one page. Click one and press the new key. Keys that two mods share (or that the game uses) show in red.
+[*]A short notice at startup if two mods use the same key.
+[/list]
+
+Changes save to the mod's .cfg file straight away. Most apply at once; a few need a restart.
+
+Required by Kamikaze's ZED ZONE mods (AmmoStacks, DogShare, Pack Rat, Boltgun, Build Anywhere, Heavy Horde, Supply Drop, Spawn Menu). Works with other authors' BepInEx mods too.
+
+Needs the ZED ZONE Code Mod Loader (BepInEx), same as our other mods.
