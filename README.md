@@ -4,6 +4,11 @@ One in-game menu for every mod's settings and hotkeys. A BepInEx (IL2CPP) mod fo
 
 Press **F11** (in the main menu or in game) to open it.
 
+## Requires
+
+- ZED ZONE (Windows, Steam)
+- [ZED ZONE Code Mod Loader](https://steamcommunity.com/sharedfiles/filedetails/?id=3834614258) - run its install.cmd once, then start the game through Steam.
+
 ## What it does
 
 - **Every mod in one list.** Left side: each loaded mod that has a BepInEx config (ours first, then other authors' mods). Right side: that mod's settings, grouped by section.
