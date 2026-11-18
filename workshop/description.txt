@@ -12,4 +12,5 @@ Changes save to the mod's .cfg file straight away. Most apply at once; a few nee
 
 Required by Kamikaze's ZED ZONE mods (AmmoStacks, DogShare, Pack Rat, Boltgun, Build Anywhere, Heavy Horde, Supply Drop, Spawn Menu). Works with other authors' BepInEx mods too.
 
-Needs the ZED ZONE Code Mod Loader (BepInEx), same as our other mods.
+[h2]Requires[/h2]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3834614258]ZED ZONE Code Mod Loader[/url] - run its install.cmd once, then start the game through Steam.
