@@ -15,7 +15,7 @@ namespace ModMenu
     public class Plugin : BasePlugin
     {
         public const string Guid = "girthy_mods.zedzone.modmenu";
-        public const string Version = "1.0.0";
+        public const string Version = "1.1.0";
 
         // Mods made by us. They are listed first; other people's mods come after them.
         internal const string OwnPrefix = "girthy_mods.";

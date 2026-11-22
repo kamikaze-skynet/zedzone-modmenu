@@ -43,8 +43,50 @@ namespace ModMenu
                 if (n.StartsWith("Digit") && n.Length == 6) Bindable[k] = KeyCode.Alpha0 + (n[5] - '0');
                 else if (k == Key.Enter) Bindable[k] = KeyCode.Return;
                 else if (k == Key.Backquote) Bindable[k] = KeyCode.BackQuote;
+                else if (k == Key.NumLock) continue;                 // toggles the numpad, not a hotkey
+                else if (NumpadToKeyCode.TryGetValue(k, out var np)) Bindable[k] = np;
                 else if (Enum.TryParse(n, out KeyCode kc)) Bindable[k] = kc;
             }
+        }
+
+        // Numpad: the Input System calls them Numpad*, KeyCode calls them Keypad*.
+        static readonly Dictionary<Key, KeyCode> NumpadToKeyCode = new Dictionary<Key, KeyCode>
+        {
+            { Key.Numpad0, KeyCode.Keypad0 }, { Key.Numpad1, KeyCode.Keypad1 }, { Key.Numpad2, KeyCode.Keypad2 },
+            { Key.Numpad3, KeyCode.Keypad3 }, { Key.Numpad4, KeyCode.Keypad4 }, { Key.Numpad5, KeyCode.Keypad5 },
+            { Key.Numpad6, KeyCode.Keypad6 }, { Key.Numpad7, KeyCode.Keypad7 }, { Key.Numpad8, KeyCode.Keypad8 },
+            { Key.Numpad9, KeyCode.Keypad9 },
+            { Key.NumpadEnter, KeyCode.KeypadEnter }, { Key.NumpadPlus, KeyCode.KeypadPlus },
+            { Key.NumpadMinus, KeyCode.KeypadMinus }, { Key.NumpadMultiply, KeyCode.KeypadMultiply },
+            { Key.NumpadDivide, KeyCode.KeypadDivide }, { Key.NumpadPeriod, KeyCode.KeypadPeriod },
+            { Key.NumpadEquals, KeyCode.KeypadEquals },
+        };
+        static readonly Dictionary<KeyCode, Key> KeyCodeToNumpad = new Dictionary<KeyCode, Key>();
+
+        // Readable key names for the menu: "Numpad 5", "Numpad +", "1" ...
+        internal static string KeyName(KeyCode k)
+        {
+            if (k >= KeyCode.Keypad0 && k <= KeyCode.Keypad9) return "Numpad " + (k - KeyCode.Keypad0);
+            switch (k)
+            {
+                case KeyCode.KeypadEnter: return "Numpad Enter";
+                case KeyCode.KeypadPlus: return "Numpad +";
+                case KeyCode.KeypadMinus: return "Numpad -";
+                case KeyCode.KeypadMultiply: return "Numpad *";
+                case KeyCode.KeypadDivide: return "Numpad /";
+                case KeyCode.KeypadPeriod: return "Numpad .";
+                case KeyCode.KeypadEquals: return "Numpad =";
+            }
+            if (k >= KeyCode.Alpha0 && k <= KeyCode.Alpha9) return ((int)(k - KeyCode.Alpha0)).ToString();
+            return k.ToString();
+        }
+
+        // Same, for text that holds KeyCode names (e.g. a shortcut "Keypad5 + LeftControl").
+        internal static string KeyNames(string text)
+        {
+            if (string.IsNullOrEmpty(text) || !text.Contains("Keypad")) return text;
+            return System.Text.RegularExpressions.Regex.Replace(text, @"Keypad\w+",
+                m => Enum.TryParse(m.Value, out KeyCode kc) ? KeyName(kc) : m.Value);
         }
 
         internal static bool KeyDown(Key k)
@@ -75,11 +117,13 @@ namespace ModMenu
             if (key >= KeyCode.Alpha0 && key <= KeyCode.Alpha9) return (Key)Enum.Parse(typeof(Key), "Digit" + (key - KeyCode.Alpha0));
             if (key == KeyCode.Return) return Key.Enter;
             if (key == KeyCode.BackQuote) return Key.Backquote;
+            if (KeyCodeToNumpad.Count == 0) foreach (var kv in NumpadToKeyCode) KeyCodeToNumpad[kv.Value] = kv.Key;
+            if (KeyCodeToNumpad.TryGetValue(key, out var np)) return np;
             return Enum.TryParse(key.ToString(), out Key k) ? k : Key.None;
         }
 
         // For "press a key to bind": the key pressed this frame, if any.
-        // unusable = a key was pressed that the mods couldn't detect (numpad, Ctrl, ...).
+        // unusable = a key was pressed that the mods couldn't detect (Ctrl, Windows key, NumLock, ...).
         internal static bool AnyBindableDown(out KeyCode code, out bool unusable)
         {
             code = KeyCode.None; unusable = false;

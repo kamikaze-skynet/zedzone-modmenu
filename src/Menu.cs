@@ -176,12 +176,12 @@ namespace ModMenu
                 if (s.SetKey(code, out var err))
                 {
                     var clash = Registry.ClashesWith(s);
-                    Status(clash.Count == 0 ? $"{s.Mod.Name}: {s.Name} = {code}"
-                                            : $"{s.Mod.Name}: {s.Name} = {code}, but that key is also {string.Join(", ", clash)}");
+                    Status(clash.Count == 0 ? $"{s.Mod.Name}: {s.Name} = {In.KeyName(code)}"
+                                            : $"{s.Mod.Name}: {s.Name} = {In.KeyName(code)}, but that key is also {string.Join(", ", clash)}");
                 }
                 else Status($"Couldn't set {s.Name}: {err}");
             }
-            else if (unusable) Status("The mods can't read that key (numpad, Ctrl and a few others). Pick another, or Esc to cancel.");
+            else if (unusable) Status("The mods can't read that key (Ctrl, Windows key, NumLock and a few others). Pick another, or Esc to cancel.");
         }
 
         // returns true when the key press was used by the text box
@@ -272,7 +272,7 @@ namespace ModMenu
 
                 GUI.Box(_win, ""); GUI.Box(_win, ""); GUI.Box(_win, "");   // stacked for a darker backing
                 GUI.Label(new Rect(_win.x + 10f * S, _win.y + 7f * S, _win.width - 20f * S, 24f * S),
-                    $"<b>Mod Menu</b>   <color=#aaaaaa>{Plugin.MenuKey.Value} / Esc to close   ·   click a value to change it, Shift+click -/+ for big steps</color>");
+                    $"<b>Mod Menu</b>   <color=#aaaaaa>{In.KeyName(Plugin.MenuKey.Value)} / Esc to close   ·   click a value to change it, Shift+click -/+ for big steps</color>");
 
                 // left: keys page + mod list
                 int clashes = Registry.ClashCount();

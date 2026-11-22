@@ -4,7 +4,7 @@ One in-game menu for every mod's settings and hotkeys. Press [b]F11[/b] in the m
 [list]
 [*][b]Every mod in one list[/b]: each mod with a BepInEx config shows up on the left, its settings on the right.
 [*][b]Change settings in place[/b]: On/Off switches, - / + for numbers (Shift for big steps, or click the number and type), choices, text. [b]Default[/b] resets a setting.
-[*][b]All keys[/b]: every mod's hotkeys on one page. Click one and press the new key. Keys that two mods share (or that the game uses) show in red.
+[*][b]All keys[/b]: every mod's hotkeys on one page. Click one and press the new key. Numpad keys work too (keep NumLock on). Keys that two mods share (or that the game uses) show in red.
 [*]A short notice at startup if two mods use the same key.
 [/list]
 

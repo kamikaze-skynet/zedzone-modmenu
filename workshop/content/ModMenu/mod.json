@@ -1,6 +1,6 @@
 {
     "name": "Mod Menu",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "author": "girthy_mods",
     "description": "Press F11 for one menu with every mod's settings and hotkeys. Shows when two mods use the same key. Required by Kamikaze's ZED ZONE mods.",
     "enabled": true

@@ -21,7 +21,7 @@ namespace ModMenu
                 MLog.Warn($"Key clash: {k.Mod.Name} {k.Name} = {k.Value} is also {string.Join(", ", Registry.ClashesWith(k))}");
             if (clashing.Count > 0 && Plugin.WarnKeyClashes.Value)
             {
-                _notice = $"Mod Menu: {clashing.Count} mod hotkeys share a key ({string.Join(", ", clashing.Select(k => k.Value).Distinct())}). Press {Plugin.MenuKey.Value} > All keys to fix.";
+                _notice = $"Mod Menu: {clashing.Count} mod hotkeys share a key ({string.Join(", ", clashing.Select(k => k.Value).Distinct())}). Press {In.KeyName(Plugin.MenuKey.Value)} > All keys to fix.";
                 _until = Time.unscaledTime + 15f;
             }
         }

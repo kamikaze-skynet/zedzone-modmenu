@@ -13,7 +13,7 @@ Press **F11** (in the main menu or in game) to open it.
 
 - **Every mod in one list.** Left side: each loaded mod that has a BepInEx config (ours first, then other authors' mods). Right side: that mod's settings, grouped by section.
 - **Change settings in place.** On/Off switches, `-` / `+` for numbers (Shift+click for big steps, or click the number and type), `<` / `>` for choices, click a text value to type it. **Default** puts a setting back. A blue `*` marks anything you changed.
-- **All keys page.** Every mod's hotkeys on one page. Click a key, then press the new one (Esc cancels, right-click clears it). Keys used twice, or used by the game (F5 quick save, F12 Steam screenshot, Esc), show in red.
+- **All keys page.** Every mod's hotkeys on one page. Click a key, then press the new one (Esc cancels, right-click clears it). Numpad keys work too (keep NumLock on). Keys used twice, or used by the game (F5 quick save, F12 Steam screenshot, Esc), show in red.
 - **Clash warning.** A few seconds after the game starts, if two mods share a key, a notice shows in the corner (turn off with `WarnKeyClashes`).
 - Changes are written to the mod's `.cfg` in `BepInEx\config` at once. Most apply right away; a few only after a restart (the menu can't tell which). **Re-read files** picks up edits you made to the .cfg files by hand.
 - While the menu is open the game ignores your clicks and keys.
