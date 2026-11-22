@@ -34,7 +34,8 @@ namespace ModMenu
             {
                 case Kind.Bool: return (bool)v ? "On" : "Off";
                 case Kind.Float: return Convert.ToDouble(v, CultureInfo.InvariantCulture).ToString("0.###", CultureInfo.InvariantCulture);
-                case Kind.Shortcut: return v.ToString() is string s && s.Length > 0 ? s : "None";
+                case Kind.Key: try { return In.KeyName((KeyCode)Convert.ToInt32(v)); } catch { return Convert.ToString(v, CultureInfo.InvariantCulture); }
+                case Kind.Shortcut: return v.ToString() is string s && s.Length > 0 ? In.KeyNames(s) : "None";
                 default: return Convert.ToString(v, CultureInfo.InvariantCulture);
             }
         }
